@@ -13,5 +13,5 @@ for i in $(seq 1 30); do
 done
 
 mc mb --ignore-existing local/shop-images
-mc cp --recursive /seed/products local/shop-images
+mc cp --recursive /data/images/products local/shop-images
 mc anonymous set download local/shop-images
