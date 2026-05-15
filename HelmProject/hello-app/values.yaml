@@ -1,0 +1,14 @@
+replicaCount: 1
+appName: "Ivan"
+
+image:
+  repository: fokus00/hello-python
+  tag: "v3"
+
+db:
+  name: my-postgres-db
+  customPassword: "secretpassword"
+
+issuerRef:
+  name: selfsigned-issuer
+

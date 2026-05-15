@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+        - name: hello-app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 5001
+          env:
+            - name: NAME
+              value: {{ .Values.appName | quote }}
+            - name: DB_HOST
+              value: "{{ .Values.db.name }}-rw"
+            - name: DB_NAME
+              value: "app"
+            - name: DB_USER
+              value: "app"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.name }}-custom-password
+                  key: password

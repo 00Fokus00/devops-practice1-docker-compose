@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: hello-app-cert
+spec:
+  secretName: hello-app-tls
+  issuerRef:
+    name: {{ .Values.issuerRef.name}}
+    kind: ClusterIssuer
+  dnsNames:
+    - "localhost"
